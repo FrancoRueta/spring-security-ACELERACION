@@ -40,9 +40,9 @@ public class Post {
 
 
     //Conversores de DateTime.
-    public String dtStr(LocalDate localDate){
+    public String dtStr(){
         /*Transforma un localDate a string.*/
-        return localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        return creationDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 
     public LocalDate strDt(String sDate){
