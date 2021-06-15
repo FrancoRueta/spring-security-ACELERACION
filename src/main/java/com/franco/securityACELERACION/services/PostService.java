@@ -8,6 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -99,6 +100,8 @@ public class PostService {
         return this.mapToDTO(post);
     }
 
+
+    @Transactional
     public void updatePost(Long postId,String title, String content, String image, String category, String creationDate) {
         Post post = postRepository.findById(postId).orElseThrow(() ->
                 new IllegalStateException("No existe el post."));
@@ -107,5 +110,11 @@ public class PostService {
         if (image != null) post.setImage(image);
         if (category != null) post.setCategory(category);
         if (creationDate != null) post.setCreationString(creationDate);
+    }
+
+    public void deletePost(Long postId) {
+        boolean exists = postRepository.existsById(postId);
+        if (!exists) {throw new IllegalStateException("No existe el post.");}
+        postRepository.deleteById(postId);
     }
 }

@@ -20,16 +20,12 @@ public class Post {
     @Column(name = "id",unique = true)
     private Long id;
 
-    @Column(name = "title")
     private String title;
 
-    @Column(name = "content")
     private String content;
 
-    @Column(name = "image")
     private String image;
 
-    @Column(name = "category")
     private String category;
 
     @Column(name = "creation_date")
@@ -52,5 +48,6 @@ public class Post {
 
     public void setCreationString(String sDate){
         this.creationDate = this.strDt(sDate);
+
     }
 }
