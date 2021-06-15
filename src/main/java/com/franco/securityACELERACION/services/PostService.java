@@ -4,6 +4,7 @@ package com.franco.securityACELERACION.services;
 import com.franco.securityACELERACION.entities.DTOS.PostDTO;
 import com.franco.securityACELERACION.entities.Post;
 import com.franco.securityACELERACION.repositories.PostRepository;
+import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,17 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class PostService {
 
 
     private final PostRepository postRepository;
     private final ModelMapper mapper;
-
-    @Autowired
-    public PostService(PostRepository postRepository,ModelMapper mapper) {
-        this.postRepository = postRepository;
-        this.mapper = mapper;
-    }
 
     public List<PostDTO> getPosts(String title, String category) {
         List<PostDTO> postDTOList;

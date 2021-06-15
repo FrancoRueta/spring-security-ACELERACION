@@ -4,6 +4,7 @@ package com.franco.securityACELERACION.controllers;
 import com.franco.securityACELERACION.entities.DTOS.PostDTO;
 import com.franco.securityACELERACION.entities.Post;
 import com.franco.securityACELERACION.services.PostService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,14 +13,10 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/posts/")
+@AllArgsConstructor
 public class PostController {
 
     private final PostService postService;
-
-    @Autowired
-    public PostController(PostService postService) {
-        this.postService = postService;
-    }
 
     //get
     @GetMapping()
