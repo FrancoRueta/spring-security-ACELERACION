@@ -49,4 +49,8 @@ public class Post {
         /*Transforma un string a localDate.*/
         return LocalDate.parse(sDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
+
+    public void setCreationString(String sDate){
+        this.creationDate = this.strDt(sDate);
+    }
 }

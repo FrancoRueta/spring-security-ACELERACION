@@ -41,4 +41,16 @@ public class PostController {
         postService.addPost(post);
     }
 
+    //patch
+    @PutMapping(path = "{postId}")
+    public void updatePost(@PathVariable Long postId,
+                           @RequestParam(required = false) String title,
+                           @RequestParam(required = false) String content,
+                           @RequestParam(required = false) String image,
+                           @RequestParam(required = false) String category,
+                           @RequestParam(required = false) String creationDate){
+        postService.updatePost(postId,title,content,image,category,creationDate);
+    }
+
+
 }

@@ -98,4 +98,14 @@ public class PostService {
                 new IllegalStateException("No existe el post con id: " + postId));
         return this.mapToDTO(post);
     }
+
+    public void updatePost(Long postId,String title, String content, String image, String category, String creationDate) {
+        Post post = postRepository.findById(postId).orElseThrow(() ->
+                new IllegalStateException("No existe el post."));
+        if (title != null) post.setTitle(title);
+        if (content != null) post.setContent(content);
+        if (image != null) post.setImage(image);
+        if (category != null) post.setCategory(category);
+        if (creationDate != null) post.setCreationString(creationDate);
+    }
 }
