@@ -81,8 +81,21 @@ public class PostService {
         return postDTOList;
     }
 
-    //de getPosts
+    //mapper
     private PostDTO mapToDTO(Post post){
         return mapper.map(post,PostDTO.class);
+    }
+
+
+    public void addPost(Post post) {
+        if(!postRepository.existsByTitle(post.getTitle())){
+            postRepository.save(post); }
+    }
+
+
+    public PostDTO getPostById(Long postId) {
+        Post post = postRepository.findById(postId).orElseThrow(() ->
+                new IllegalStateException("No existe el post con id: " + postId));
+        return this.mapToDTO(post);
     }
 }

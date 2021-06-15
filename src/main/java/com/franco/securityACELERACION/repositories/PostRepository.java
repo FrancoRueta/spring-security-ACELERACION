@@ -16,4 +16,6 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     List<Post> findPostByCategoryOrderByCreationDateDesc(String category);
 
     List<Post> findPostByTitleOrderByCreationDateDesc(String title);
+
+    boolean existsByTitle(String title);
 }
