@@ -23,14 +23,35 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "post_sequence")
     @Column(name = "id",unique = true)
     private Long id;
-    private String username;
+    private String name;
     private String email;
     private String password;
 
     @Enumerated(EnumType.STRING)
     private AppUserRole appUserRole;
-    private Boolean locked;
-    private Boolean enabled;
+
+    private Boolean locked = false;
+    private Boolean enabled = false;
+
+    public User(String name, String email, String password, AppUserRole appUserRole) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.appUserRole = appUserRole;
+    }
+
+    public User() {
+    }
+
+    public User(Long id, String name, String email, String password, AppUserRole appUserRole, Boolean locked, Boolean enabled) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.appUserRole = appUserRole;
+        this.locked = locked;
+        this.enabled = enabled;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -45,7 +66,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return username;
+        return email;
     }
 
     @Override

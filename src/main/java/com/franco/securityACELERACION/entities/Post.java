@@ -31,6 +31,7 @@ public class Post {
     @Column(name = "creation_date")
     private LocalDate creationDate;
 
+
     @Column(name = "user_id")
     private Long userId;
 
