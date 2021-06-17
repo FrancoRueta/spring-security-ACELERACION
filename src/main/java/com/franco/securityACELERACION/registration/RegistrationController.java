@@ -1,10 +1,9 @@
-package com.franco.securityACELERACION.controllers;
+package com.franco.securityACELERACION.registration;
 
 
-import com.franco.securityACELERACION.entities.DTOS.RegistrationRequest;
-import com.franco.securityACELERACION.services.RegistrationService;
+import com.franco.securityACELERACION.registration.RegistrationRequest;
+import com.franco.securityACELERACION.registration.RegistrationService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

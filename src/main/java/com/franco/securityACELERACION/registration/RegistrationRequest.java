@@ -1,4 +1,4 @@
-package com.franco.securityACELERACION.entities.DTOS;
+package com.franco.securityACELERACION.registration;
 
 
 import lombok.Data;

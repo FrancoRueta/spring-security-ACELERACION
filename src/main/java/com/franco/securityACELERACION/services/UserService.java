@@ -2,16 +2,19 @@ package com.franco.securityACELERACION.services;
 
 
 import com.franco.securityACELERACION.entities.User;
+import com.franco.securityACELERACION.registration.token.AuthToken;
+import com.franco.securityACELERACION.registration.token.AuthTokenRepository;
+import com.franco.securityACELERACION.registration.token.AuthTokenService;
 import com.franco.securityACELERACION.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.security.InvalidParameterException;
+import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Service
 @AllArgsConstructor
@@ -19,6 +22,7 @@ public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final AuthTokenService authTokenService;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException{
@@ -29,13 +33,16 @@ public class UserService implements UserDetailsService {
     public String signUpUser(User user){
         boolean exists = userRepository.findByEmail(user.getEmail()).isPresent();
         if (exists){
-            throw new InvalidParameterException("Ya existe un usuario con dicho email.");
+            return "El email se encuentra en uso.";
         }
         String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
 
         userRepository.save(user);
-        //TODO: enviar confirmation token.
-        return "funciono.";
+        String token = UUID.randomUUID().toString();
+        AuthToken authToken = new AuthToken(token, LocalDateTime.now(),LocalDateTime.now().plusMinutes(15),user);
+        authTokenService.saveConfirmationToken(authToken);
+        //TODO: mandar email
+        return token;
     }
 }

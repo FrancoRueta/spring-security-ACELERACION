@@ -1,10 +1,10 @@
-package com.franco.securityACELERACION.services;
+package com.franco.securityACELERACION.registration;
 
 
 import com.franco.securityACELERACION.entities.DTOS.AppUserRole;
-import com.franco.securityACELERACION.entities.DTOS.EmailValidator;
-import com.franco.securityACELERACION.entities.DTOS.RegistrationRequest;
+import com.franco.securityACELERACION.email.EmailValidator;
 import com.franco.securityACELERACION.entities.User;
+import com.franco.securityACELERACION.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
